@@ -79,7 +79,7 @@ ul,li{
 span.actions-modal-button{
   font-size:0.9rem;
 }
-.user_information .list-block .item-link:active{
+.user-information .list-block .item-link:active{
   background-color:#39343A !important;
 }
 .common-head{

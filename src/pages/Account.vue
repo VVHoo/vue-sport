@@ -1,5 +1,5 @@
 <template>
-  <div class="page page-current" id="login_page">
+  <div class="page page-current" id="login-page">
     <div class="login-container">
       <div>
         <div class="btn-group">

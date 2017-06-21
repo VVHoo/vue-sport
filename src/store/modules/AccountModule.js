@@ -3,8 +3,8 @@
  */
 import * as types from '../mutation-types'
 const state = {
-  user: window.user,
-  isLogined: localStorage.getItem('user')
+  user:JSON.parse(localStorage.getItem('user')),
+  isLogined:localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).loginStatus : false
 }
 
 const mutations = {
@@ -12,10 +12,13 @@ const mutations = {
     state.user = data;
     state.isLogined = true;
     localStorage.setItem("user", JSON.stringify(data));
-    window.user = state.user;
   },
   [types.REGISTER](state, status){
 
+  },
+  [types.LOGOUT](state){
+    localStorage.removeItem("user");
+    state.isLogined = false;
   }
 }
 const getters = {

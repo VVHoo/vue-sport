@@ -24,8 +24,8 @@ const routes = new Router({
       component:Account,
       beforeEnter:(to, from, next) => {
         //console.log(store.getters.user)
-        window.user = store.getters.user ? store.getters.user : localStorage.getItem("user")
-        if(user == undefined || user == null){
+        //console.log(store.getters.isLogined)
+        if(!store.getters.isLogined){
           next({path: '/account'})
         }else{
           next({path: '/train'})
