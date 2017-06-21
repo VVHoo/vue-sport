@@ -1,0 +1,93 @@
+html, body{
+  height:100%;
+  overflow: hidden;
+  position: relative;
+}
+body{
+  position: absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  font-family:"Helvetica Neue", Helvetica, sans-serif;
+  overflow: hidden;
+  margin:0;
+  padding:0;
+}
+h3{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  font-weight: normal;
+  font-size:0.9rem;
+}
+a,button,
+a:hover,button:hover,
+a:focus,button:focus,
+a:active,button:active{
+  outline: 0 !important;
+  text-decoration: none !important;
+}
+var,em,i,b{
+  font-style: normal;
+}
+header{
+  background: #584f60 !important;
+}
+a:hover, a:focus{
+  color: #a2a2a2;
+}
+ul,li{
+  text-decoration:none;
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.bar-tab .tab-item{
+  color: #B8B9BE;
+}
+.bar-tab .tab-item.router-link-active, .bar-tab .tab-item:active{
+  color: #797B87;
+}
+.list-block ul{
+  background: none;
+}
+.card{
+  margin:0.5rem 0;
+}
+.item-title-row{
+  font-size:0.75rem;
+}
+.item-subtitle{
+  font-size:0.6rem;
+}
+.card{
+  margin-top:0;
+}
+.card-content{
+  padding:0.5rem;
+}
+.card-content > h3{
+  white-space: pre-wrap;
+  font-weight: bold;
+}
+.list-block ul:before{
+  background-color: #ffffff !important;
+}
+span.actions-modal-button{
+  font-size:0.9rem;
+}
+.user_information .list-block .item-link:active{
+  background-color:#39343A !important;
+}
+.common-head{
+  background: #584f60;
+}
+.myinformation, .top-title{
+  color: #ffffff;
+}
+.information-panel{
+  background: #171F22;
+}

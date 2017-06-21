@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>vue-sport</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <script type="text/javascript" src="./static/js/zepto.js"></script>
+    <script type="text/javascript">
+      $.config = {
+        router:false
+      };
+      $(document).on('contextmenu', function () {
+        return false;
+      });
+
+      $(document).on('mousedown', 'img', function (e) {
+        e.preventDefault();
+      });
+
+      $(document).on('touchmove', '.scroller', function(e) {
+        e.preventDefault();
+      });
+    </script>
+    <script src="./static/js/sm.min.js"></script>
+  </body>
+</html>
