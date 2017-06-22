@@ -53,9 +53,14 @@
         let userInfo = {}
         userInfo.userName = this.loginMsg.userName
         userInfo.password = this.loginMsg.password
+        this.$store.dispatch('setLoading', true)
         api.userLogin(userInfo)
           .then((res) => {
             console.log(res)
+            let loadingStore = this.$store
+            setTimeout(function () {
+              loadingStore.dispatch('setLoading', false)
+            }, 300)
             if(res.data.status == 200){
               this.$store.dispatch('loginSubmit', res.data.data)
               //console.log(user)--window.user
@@ -94,8 +99,8 @@
             if(res.data.status == 4){
               $.alert(res.data.error)
             }else if(res.data.status == 201){
-              $.alert('注册成功')
-              this.$store.dispatch('registerSubmit', true)
+              $.toast('注册成功')
+              this.show = 'login'
             }
           }, err => {
             reject(err)

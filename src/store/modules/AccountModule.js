@@ -9,16 +9,16 @@ const state = {
 
 const mutations = {
   [types.LOGIN](state, data){
-    state.user = data;
-    state.isLogined = true;
-    localStorage.setItem("user", JSON.stringify(data));
+    state.user = data
+    state.isLogined = true
+    localStorage.setItem("user", JSON.stringify(data))
   },
-  [types.REGISTER](state, status){
+  /*[types.REGISTER](state, status){
 
-  },
+  },*/
   [types.LOGOUT](state){
-    localStorage.removeItem("user");
-    state.isLogined = false;
+    localStorage.removeItem("user")
+    state.isLogined = false
   }
 }
 const getters = {
@@ -30,9 +30,9 @@ const actions = {
   loginSubmit({commit}, data){
     commit(types.LOGIN, data)
   },
-  registerSubmit({commit}, status){
+  /*registerSubmit({commit}, status){
     commit(types.REGISTER, status)
-  },
+  },*/
   logout({commit}){
     commit(types.LOGOUT)
   }

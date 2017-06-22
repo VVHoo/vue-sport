@@ -7,7 +7,7 @@
     </div>
     <div class="panel-overlay" v-if="isLogined"></div>
     <user-panel v-if="isLogined"></user-panel>
-    <div class="modal-overlay" v-if="isLogined"></div>
+    <v-loading v-if="isLogined"></v-loading>
     <router-view v-if="!isLogined"></router-view>
   </div>
 </template>
@@ -17,6 +17,7 @@
   import tabar from './components/tabar.vue'
   import header from './components/header.vue'
   import userPanel from './components/userPanel.vue'
+  import loading from './components/loading.vue'
   export default {
     computed:{
       ...mapGetters([
@@ -39,7 +40,8 @@
     components:{
       'v-tabar': tabar,
       'v-header': header,
-      'user-panel':userPanel
+      'user-panel':userPanel,
+      'v-loading':loading
     }
   }
 </script>

@@ -46,13 +46,20 @@
   export default {
     computed:{
       ...mapGetters([
-        'user'
+        'user',
+        'isLogined'
       ])
     },
     methods:{
       logout(){
-        this.$store.dispatch('logout')
-        this.$router.replace('/account')
+        //回调dispatch this和confirm this冲突
+        let logoutDispatch = this.$store;
+        let replaceRouter = this.$router;
+        $.confirm('确定要退出?', function () {
+          $('body').removeAttr('class')
+          logoutDispatch.dispatch('logout')
+          replaceRouter.replace('/account')
+        });
       }
     }
   }
