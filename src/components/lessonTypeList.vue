@@ -2,7 +2,7 @@
   <ul class="lesson_tag clearfix">
     <li v-for="(item, index) in lessonTypeList">
       <div class="tag_container">
-        <img :src="item.typeCover">
+        <img v-lazy="item.typeCover">
         <div class="mask"></div>
         <div class="tag_info">
           <div class="tag_title">{{item.videoType}}</div>
@@ -18,6 +18,7 @@
     props:{
       lessonTypeList:Array
     }
+    //page:{currentPage, pageSize, 'searchType'}
   }
 </script>
 

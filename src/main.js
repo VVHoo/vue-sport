@@ -2,8 +2,14 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import router from './router'
+import router from './router/index'
 import store from './store/index'
+import vueLazyLoad from 'vue-lazyload'
+
+Vue.use(vueLazyLoad, {
+  preLoad: 1.3,
+  attempt: 2
+})
 
 Vue.config.productionTip = false
 

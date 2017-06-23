@@ -28,7 +28,9 @@
         this.$router.replace('/account')
         return false
       }
-      this.$store.dispatch('getLessonTypeList', this.token)
+      if(this.lessonTypeList == 0){
+        this.$store.dispatch('getLessonTypeList', this.token)
+      }
     },
     components:{
       'search-bar':searchBar,

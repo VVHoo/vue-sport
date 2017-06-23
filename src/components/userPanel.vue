@@ -52,7 +52,6 @@
     },
     methods:{
       logout(){
-        //回调dispatch this和confirm this冲突
         let logoutDispatch = this.$store;
         let replaceRouter = this.$router;
         $.confirm('确定要退出?', function () {
