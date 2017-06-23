@@ -40,17 +40,26 @@ const routes = new Router({
     {
       path:'/train',
       name:'train',
-      component:Train
+      component:Train,
+      meta:{
+        requiresAuth:true
+      }
     },
     {
       path:'/article',
       name:'article',
-      component:Article
+      component:Article,
+      meta:{
+        requiresAuth:true
+      }
     },
     {
       path:'/mine',
       name:'mine',
-      component:Mine
+      component:Mine,
+      meta:{
+        requiresAuth:true
+      }
     }
     /*{
      path:'/train',
@@ -94,8 +103,17 @@ const routes = new Router({
   ]
 })
 routes.beforeEach((to, from, next) => {
-  console.log(from.path + "--to--" + to.path)
-  next()
+  console.log(from.path + "  to  " + to.path)
+  let token = store.getters.token
+  if(to.meta.requiresAuth){
+    if(token){
+      next()
+    }else {
+      next({path: '/account'})
+    }
+  }else{
+    next()
+  }
 })
 
 

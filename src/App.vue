@@ -3,7 +3,7 @@
     <div v-if="isLogined" class="page page-current" id="main-page">
       <v-header :title="title"></v-header>
       <v-tabar></v-tabar>
-      <router-view></router-view>
+      <router-view v-if="isLogined"></router-view>
     </div>
     <div class="panel-overlay" v-if="isLogined"></div>
     <user-panel v-if="isLogined"></user-panel>
