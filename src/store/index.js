@@ -5,11 +5,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import common from './modules/common'
 import accountModule from './modules/accountModule'
+import trainModule from './modules/trainModule'
 
 Vue.use(Vuex)
 export default new Vuex.Store({
   modules:{
     common,
-    accountModule
+    accountModule,
+    trainModule
   }
 })

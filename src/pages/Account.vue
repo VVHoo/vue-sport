@@ -63,6 +63,7 @@
             }, 300)
             if(res.data.status == 200){
               this.$store.dispatch('loginSubmit', res.data.data)
+              this.$store.dispatch('saveToken', res.data.data.token)
               //console.log(user)--window.user
               this.$router.replace('/train')
             }else if(res.data.status == 401){

@@ -4,14 +4,15 @@
 import axios from 'axios'
 
 const BASE_URL = 'http://192.168.5.6:8080/'
-const instance = axios.create();
+const instance = axios.create({
+  withCredentials: true
+});
 instance.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 
 axios.interceptors.request.use((config) => {
   if(config.method === 'post'){
     config.data = JSON.stringify(config.data)
   }
-  config.withCredentials = true
   return config;
 })
 
@@ -21,5 +22,8 @@ export default{
   },
   userRegister(data){
     return instance.post(BASE_URL + 'Auth/register', data)
+  },
+  getLessonTypeList(token){
+    return instance.post(BASE_URL + 'video/getVideoType/token/' + token)
   }
 }
