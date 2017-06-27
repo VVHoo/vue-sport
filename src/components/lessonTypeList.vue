@@ -1,6 +1,6 @@
 <template>
   <ul class="lesson_tag clearfix">
-    <li v-for="(item, index) in lessonTypeList">
+    <router-link to="/train/trainList" tag="li" v-for="(item, index) in lessonTypeList" :key="item.id">
       <div class="tag_container">
         <img v-lazy="item.typeCover">
         <div class="mask"></div>
@@ -9,7 +9,7 @@
           <div class="lesson_count">{{item.typeNum}}个课程</div>
         </div>
       </div>
-    </li>
+    </router-link>
   </ul>
 </template>
 

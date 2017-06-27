@@ -1,21 +1,33 @@
 <template>
-  <div class="content">
-    <search-bar></search-bar>
-    <div class="training_lesson">
-      <div class="lesson_wrapper">
-        <h3>课程分类</h3>
-        <p>丰富的训练课程，规范你的训练过程</p>
+  <div class="page page-current" id="train-page">
+    <v-header :title="title"></v-header>
+    <v-tabar></v-tabar>
+    <div class="content">
+      <search-bar></search-bar>
+      <div class="training_lesson">
+        <div class="lesson_wrapper">
+          <h3>课程分类</h3>
+          <p>丰富的训练课程，规范你的训练过程</p>
+        </div>
+        <lesson-type-list :lessonTypeList="lessonTypeList"></lesson-type-list>
       </div>
-      <lesson-type-list :lessonTypeList="lessonTypeList"></lesson-type-list>
     </div>
   </div>
+
 </template>
 
 <script type="text/ecmascript-6">
+  import tabar from '../components/tabar.vue'
+  import header from '../components/header.vue'
   import searchBar from '../components/searchBar.vue'
   import lessonTypeList from '../components/lessonTypeList.vue'
   import { mapGetters } from 'vuex'
   export default {
+    data(){
+      return {
+        title:'训练'
+      }
+    },
     computed:{
       ...mapGetters([
         'isLogined',
@@ -33,6 +45,8 @@
       }
     },
     components:{
+      'v-tabar': tabar,
+      'v-header': header,
       'search-bar':searchBar,
       'lesson-type-list': lessonTypeList
     }

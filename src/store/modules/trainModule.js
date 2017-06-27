@@ -5,6 +5,7 @@ import * as types from '../mutation-types'
 import api from '../../api/index'
 const state = {
   lessonTypeList:[]
+  //typePageSize, typeCurrentPage, typeCurrentSearchType
 }
 
 const mutations = {
