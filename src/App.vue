@@ -1,13 +1,6 @@
 <template>
   <div id="app">
     <div class="page-group">
-     <!-- <div class="page page-current" id="main-page">
-        <v-header :title="title"></v-header>
-        <v-tabar></v-tabar>
-        <transition :name="transitionName">
-          <router-view></router-view>
-        </transition>
-      </div>-->
       <transition :name="transitionName">
         <router-view></router-view>
       </transition>
@@ -20,8 +13,6 @@
 
 <script type="text/ecmascript-6">
   import { mapGetters } from 'vuex'
-  /*import tabar from './components/tabar.vue'
-  import header from './components/header.vue'*/
   import userPanel from './components/userPanel.vue'
   import loading from './components/loading.vue'
   export default {
@@ -68,11 +59,14 @@
           || toDepth <=2 && fromDepth <=2){
           this.transitionName = ' '
         }
+      },
+      isLogined:function () {
+        if(!this.isLogined){
+          this.$router.replace('/account')
+        }
       }
     },
     components:{
-      /*'v-tabar': tabar,
-      'v-header': header,*/
       'user-panel':userPanel,
       'v-loading':loading
     }

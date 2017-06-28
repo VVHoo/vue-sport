@@ -18,6 +18,7 @@ const mutations = {
   },*/
   [types.LOGOUT](state){
     localStorage.removeItem("user")
+    localStorage.removeItem("isSubPage")
     state.isLogined = false
   }
 }

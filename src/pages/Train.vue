@@ -36,10 +36,6 @@
       ])
     },
     created(){
-      if(!this.isLogined){
-        this.$router.replace('/account')
-        return false
-      }
       if(this.lessonTypeList == 0){
         this.$store.dispatch('getLessonTypeList', this.token)
       }

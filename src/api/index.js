@@ -25,5 +25,8 @@ export default{
   },
   getLessonTypeList(token){
     return instance.post(BASE_URL + 'video/getVideoType/token/' + token)
+  },
+  getLessonList(token, data){
+    return instance.post(BASE_URL + 'video/getVideoList/token/' + token, data)
   }
 }
