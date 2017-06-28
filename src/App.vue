@@ -63,7 +63,7 @@
         }
         let toDepth = to.path.split('/').length
         let fromDepth = from.path.split('/').length
-        this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
+        this.transitionName = toDepth < fromDepth ? 'slideRight' : 'slideLeft'
         if(to.path === '/train' && from.path === '/' || to.path === '/article' && from.path === '/' || to.path === '/mine' && from.path === '/'
           || toDepth <=2 && fromDepth <=2){
           this.transitionName = ' '
@@ -83,20 +83,108 @@
   @import "../static/css/sm.min.css";
   @import "./pages/css/main.css";
   @import "../static/css/iconfont.css";
-  .slide-left-enter-active,
-  .slide-right-enter-active{
-    transition:transform .3s ease-in-out;
+  /*路由动画，修改SUI*/
+  .slideLeft-enter-active{
+    animation:pageFromRightToCenter .3s forwards;
   }
-  .slide-left-leave-active,
-  .slide-right-leave-active{
-    transition:  transform .3s ease-in-out;
+  .slideLeft-leave-active{
+    animation: pageFromCenterToLeft .3s forwards;
   }
-  .slide-left-enter,
-  .slide-left-leave {
-    transform: translateX(100%);
+  .slideRight-enter-active{
+    animation: pageFromLeftToCenter .3s forwards;
   }
-  .slide-right-enter,
-  .slide-right-leave {
-    transform: translateX(-100%);
+  .slideRight-leave-active{
+    animation: pageFromCenterToRight .3s forwards;
+    z-index: 2002;
+  }
+
+  @keyframes pageFromRightToCenter  {
+    from {
+      -webkit-transform: translate3d(100%, 0, 0);
+      transform: translate3d(100%, 0, 0);
+      opacity: .8;
+    }
+    to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+  }
+  @keyframes pageFromCenterToLeft{
+    from {
+      opacity: 1;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      opacity:0.8;
+      -webkit-transform: translate3d(-20%, 0, 0);
+      transform: translate3d(-20%, 0, 0);
+    }
+  }
+  @keyframes pageFromLeftToCenter {
+    from {
+      -webkit-transform: translate3d(-20%, 0, 0);
+      transform: translate3d(-20%, 0, 0);
+    }
+    to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  @keyframes pageFromCenterToRight  {
+    from {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      -webkit-transform: translate3d(100%, 0, 0);
+      transform: translate3d(100%, 0, 0);
+    }
+  }
+
+  @-webkit-keyframes pageFromRightToCenter  {
+    from {
+      -webkit-transform: translate3d(100%, 0, 0);
+      transform: translate3d(100%, 0, 0);
+      opacity: .8;
+    }
+    to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+  }
+  @-webkit-keyframes pageFromCenterToLeft{
+    from {
+      opacity: 1;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      opacity:0.8;
+      -webkit-transform: translate3d(-20%, 0, 0);
+      transform: translate3d(-20%, 0, 0);
+    }
+  }
+  @-webkit-keyframes pageFromLeftToCenter {
+    from {
+      -webkit-transform: translate3d(-20%, 0, 0);
+      transform: translate3d(-20%, 0, 0);
+    }
+    to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  @-webkit-keyframes pageFromCenterToRight  {
+    from {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      -webkit-transform: translate3d(100%, 0, 0);
+      transform: translate3d(100%, 0, 0);
+    }
   }
 </style>

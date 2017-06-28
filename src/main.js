@@ -8,7 +8,8 @@ import vueLazyLoad from 'vue-lazyload'
 
 Vue.use(vueLazyLoad, {
   preLoad: 1.3,
-  attempt: 2
+  attempt: 2,
+  listenEvents:['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend', 'touchmove']
 })
 
 Vue.config.productionTip = false
