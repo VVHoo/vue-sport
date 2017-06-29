@@ -8,7 +8,8 @@ const state = {
   lessonList:[],
   trainCurrentPage:0,
   trainPageSize:5,
-  trainLessonSearchType:''
+  trainLessonSearchType:'',
+  scrollLoading: true
   //typePageSize, typeCurrentPage, typeCurrentSearchType
 }
 
@@ -26,9 +27,13 @@ const mutations = {
     state.trainLessonSearchType = searchType
   },
   [types.RESET_TRAINPAGE](state){
-    state.trainCurrentPage = 1
+    state.trainCurrentPage = 0
     state.trainPageSize = 5
     state.trainLessonSearchType = ''
+    state.lessonList = []
+  },
+  [types.SET_SCROLL_LOADING](state, status){
+    state.scrollLoading = status
   }
 }
 
@@ -64,7 +69,7 @@ const actions = {
     commit(types.COM_LOADING, true)
     api.getLessonList(params.token, params.page)
       .then((res) => {
-        console.log(res)
+        //console.log(res)
         setTimeout(() => {
           commit(types.COM_LOADING, false)
         }, 200)
@@ -90,6 +95,9 @@ const actions = {
   },
   resetTrainPage({commit}){
     commit(types.RESET_TRAINPAGE)
+  },
+  setScrollLoading({commit}, status){
+    commit(types.SET_SCROLL_LOADING, status)
   }
 }
 
@@ -98,7 +106,8 @@ const getters = {
   lessonList:state => {return state.lessonList},
   trainCurrentPage:state => {return state.trainCurrentPage},
   trainPageSize:state => {return state.trainPageSize},
-  trainLessonSearchType:state => {return state.trainLessonSearchType}
+  trainLessonSearchType:state => {return state.trainLessonSearchType},
+  scrollLoading: state => {return state.scrollLoading}
 }
 
 export default{

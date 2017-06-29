@@ -36,9 +36,7 @@
       ])
     },
     created(){
-      if(this.lessonTypeList == 0){
-        this.$store.dispatch('getLessonTypeList', this.token)
-      }
+      this.$store.dispatch('getLessonTypeList', this.token)
     },
     components:{
       'v-tabar': tabar,

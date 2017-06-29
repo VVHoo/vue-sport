@@ -11,6 +11,7 @@ const Account = r => require.ensure([], () => r(require('../pages/Account')), 'A
 const Article = r => require.ensure([], () => r(require('../pages/Article')), 'Article')
 const Mine = r => require.ensure([], () => r(require('../pages/Mine')), 'Mine')
 const TrainList = r => require.ensure([], () => r(require('../pages/TrainList')), 'TrainList')
+const TrainLesson = r => require.ensure([], () => r(require('../pages/TrainLesson')), 'TrainLesson')
 /*const TrainList = r => require.ensure([], () => r(require('../pages/TrainList')), 'TrainList')
  const TrainLesson = r => require.ensure([], () => r(require('../pages/TrainLesson')), 'TrainLesson')
  const Article = r => require.ensure([], () => r(require('../pages/Article')), 'Article')
@@ -66,6 +67,10 @@ const routes = new Router({
       path:'/train/trainList',
       name:'trainList',
       component:TrainList
+    },
+    {
+      path:'/train/trainList/trainLesson',
+      component:TrainLesson
     }
     /*{
      path:'/train',

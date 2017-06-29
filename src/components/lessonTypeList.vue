@@ -1,11 +1,11 @@
 <template>
   <ul class="lesson_tag clearfix">
     <router-link to="/train/trainList" tag="li" v-for="(item, index) in lessonTypeList" :key="item.id">
-      <div class="tag_container">
+      <div class="tag_container" @click="getLessonType(item.videoType)">
         <img v-lazy="item.typeCover">
         <div class="mask"></div>
-        <div class="tag_info">
-          <div class="tag_title">{{item.videoType}}</div>
+        <div class="tag-info">
+          <div class="tag-title">{{item.videoType}}</div>
           <div class="lesson_count">{{item.typeNum}}个课程</div>
         </div>
       </div>
@@ -13,10 +13,15 @@
   </ul>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   export default {
     props:{
       lessonTypeList:Array
+    },
+    methods:{
+      getLessonType(searchType){
+        this.$store.dispatch('setSearchType', searchType)
+      }
     }
     //page:{currentPage, pageSize, 'searchType'}
   }
@@ -47,7 +52,7 @@
     height: 100%;
     background: rgba(0,0,0,0.4);
   }
-  .tag_info{
+  .tag-info{
     position: absolute;
     left: 0;
     top: 0;
@@ -61,7 +66,7 @@
     color: #fefefe;
     font-size: 0.78rem;
   }
-  .tag_title{
+  .tag-title{
     margin-bottom:1.2rem;
   }
   .tag_container img, .lesson_introduce img{

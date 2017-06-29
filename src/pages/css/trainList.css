@@ -1,0 +1,87 @@
+.train_lession_list{
+  margin:0;
+  padding:0;
+  overflow: hidden;
+}
+.lesson_introduce img{
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform:translate(-50%, -50%);
+  -moz-transform:translate(-50%, -50%);
+}
+#train_list header .title,
+#train_list header a,
+#train_lesson header .title,
+#train_lesson header a{
+  color: #ffffff;
+}
+.introduce_info{
+  position: absolute;
+}
+.searchNull{
+  margin-top:1rem;
+  text-align: center;
+  color: #999;
+}
+.train_lession_list > li{
+  position: relative;
+  width:100%;
+  height:8rem;
+  max-height:9rem;
+  line-height:0;
+  margin-bottom:0.1rem;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.lesson_introduce{
+  width: 100%;
+  height: 0;
+  padding-bottom: 45%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+}
+.introduce_title{
+  top:1.5rem;
+  font-size:0.87rem;
+  font-weight:600;
+}
+.introduce_title, .pioneer{
+  left:0.75rem;
+  color: #ffffff;
+  position: absolute;
+}
+.pioneer{
+  bottom:1.5rem;
+  font-size:0.6rem;
+}

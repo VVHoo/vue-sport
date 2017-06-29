@@ -96,7 +96,7 @@
         userInfo.email = this.registerMsg.email
         api.userRegister(userInfo)
           .then((res) => {
-            console.log(res)
+            //console.log(res)
             if(res.data.status == 4){
               $.alert(res.data.error)
             }else if(res.data.status == 201){
