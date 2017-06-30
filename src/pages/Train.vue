@@ -4,8 +4,8 @@
     <v-tabar></v-tabar>
     <div class="content">
       <search-bar></search-bar>
-      <div class="training_lesson">
-        <div class="lesson_wrapper">
+      <div class="training-lesson">
+        <div class="lesson-wrapper">
           <h3>课程分类</h3>
           <p>丰富的训练课程，规范你的训练过程</p>
         </div>
@@ -48,20 +48,20 @@
 </script>
 
 <style scoped>
-  .training_lesson{
+  .training-lesson{
     background: #ffffff;
     box-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.3);
   }
-  .lesson_wrapper{
+  .lesson-wrapper{
     padding: 1.7rem 0;
     text-align: center;
   }
-  .lesson_wrapper h3{
+  .lesson-wrapper h3{
     color: #24c789;
     font-size: 0.9rem;
     font-weight: 700;
   }
-  .lesson_wrapper p{
+  .lesson-wrapper p{
     color: #999;
     font-size: 0.7rem;
   }

@@ -4,15 +4,25 @@
     <a class="searchbar-cancel">取消</a>
     <div class="search-input">
       <label class="icon icon-search" for="search"></label>
-      <input type="search" id="search" placeholder="搜索训练课程..."/>
+      <input type="search" id="search" placeholder="搜索训练课程..." v-model.trim="searchType" @keyup.enter="searchLesson"/>
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   export default {
-
+    data(){
+      return{
+        searchType:''
+      }
+    },
+    methods:{
+      searchLesson(){
+        this.$store.dispatch('setSearchType', this.searchType)
+        this.$router.push('/train/trainList')
+      }
+    }
   }
 </script>
 

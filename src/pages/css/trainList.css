@@ -14,11 +14,11 @@
 }
 #train-list header .title,
 #train-list header a,
-#train_lesson header .title,
-#train_lesson header a{
+#train-lesson header .title,
+#train-lesson header a{
   color: #ffffff;
 }
-.introduce_info{
+.introduce-info{
   position: absolute;
 }
 .searchNull{

@@ -3,14 +3,14 @@
     <v-header :title="headTitle"></v-header>
     <div class="content">
       <ul class="train-lession-list clearfix">
-        <router-link to="/train/trainList/trainLesson" tag="li"  v-for="(item, index) in lessonList" :key="item.id">
-          <div class="lesson-introduce">
+        <router-link to="/train/trainList/trainLesson" tag="li"  v-for="(item, index) in lessonList" :key="item.id" @click="setQueryLessonId">
+          <div class="lesson-introduce" @click="setQueryLessonId(item.videoId)">
             <img v-lazy="item.coverPath">
           </div>
           <div class="introduce-title">{{item.videoTitle}}</div>
           <div class="pioneer">2人训练</div>
         </router-link>
-        <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading">
+        <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading" :distance="0">
           <span slot="no-more">
             没有更多内容了~
           </span>
@@ -58,11 +58,11 @@
         api.getLessonList(this.token, page)
           .then((res) => {
             //console.log(res)
+            let alertThis = this.$store
             setTimeout(() => {
               this.$store.dispatch('setLoading', false)
             }, 200)
             if(res.data.status == 401){
-              let alertThis = this.$store
               $.alert("token失效,请重新登录", function () {
                 alertThis.dispatch('logout')
               });
@@ -74,12 +74,14 @@
                 this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
               }
             }else if(res.data.status == -2){
-              let alertThis = this.$store
               $.alert('已在别的地方登录', function () {
                 alertThis.dispatch('logout')
               })
             }
           })
+      },
+      setQueryLessonId(videoId){
+        this.$store.dispatch('setQueryLessonId', videoId)
       }
     },
     destroyed(){

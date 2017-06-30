@@ -1,7 +1,7 @@
 <template>
-  <ul class="lesson_tag clearfix">
+  <ul class="lesson-tag clearfix">
     <router-link to="/train/trainList" tag="li" v-for="(item, index) in lessonTypeList" :key="item.id">
-      <div class="tag_container" @click="getLessonType(item.videoType)">
+      <div class="tag-container" @click="getLessonType(item.videoType)">
         <img v-lazy="item.typeCover">
         <div class="mask"></div>
         <div class="tag-info">
@@ -28,12 +28,12 @@
 </script>
 
 <style scoped>
-  .lesson_tag, .train_lession_list{
+  .lesson-tag, .train-lession-list{
     margin:0;
     padding:0;
     overflow: hidden;
   }
-  .lesson_tag > li{
+  .lesson-tag > li{
     width:50%;
     height:0;
     padding-bottom:50%;
@@ -41,10 +41,10 @@
     float: left;
     overflow: hidden;
   }
-  .tag_container, .lesson_introduce{
+  .tag-container, .lesson-introduce{
     position: relative;
   }
-  .lesson_tag .mask{
+  .lesson-tag .mask{
     position: absolute;
     left: 0;
     top: 0;
@@ -69,10 +69,10 @@
   .tag-title{
     margin-bottom:1.2rem;
   }
-  .tag_container img, .lesson_introduce img{
+  .tag-container img, .lesson-introduce img{
     width:100%;
   }
-  .lesson_introduce img{
+  .lesson-introduce img{
     position: absolute;
     left: 50%;
     top: 50%;

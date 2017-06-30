@@ -1,0 +1,64 @@
+.lesson-banner{
+  width: 100%;
+  height: 0;
+  padding-bottom: 55%;
+  position: relative;
+  max-height:10rem;
+  overflow: hidden;
+}
+.lesson-banner > img{
+  position: absolute;
+  width:100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform:translate(-50%, -50%);
+  -moz-transform:translate(-50%, -50%);
+}
+.lesson-title{
+  position: absolute;
+  left: 0.75rem;
+  top: 1rem;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.introduce-title, .pioneer{
+  left:0.75rem;
+  color: #ffffff;
+  position: absolute;
+}
+.pioneer{
+  bottom:1.5rem;
+  font-size:0.6rem;
+}
+.lesson-banner .pioneer{
+  position: absolute;
+  left:0.75rem;
+  top:6rem;
+  color: #ffffff;
+}
+.lesson-banner .add-button{
+  position: absolute;
+  bottom:0.7rem;
+  padding:0 3.5rem;
+  left:50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+.lesson-banner .add-button.disabled{
+  background:#c8c9cb;
+  border-color: #c8c9cb;
+}
+#train-lesson > .content > .list-block{
+  background: #ffffff;
+  box-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.3);
+  font-size:0.75rem;
+}
+#train-lesson > .content > .list-block .item-content{
+  border-bottom:1px solid #e1e1e1;
+}

@@ -5,10 +5,12 @@ import * as types from '../mutation-types'
 import api from '../../api/index'
 const state = {
   lessonTypeList:[],
-  lessonList:[],
+  videoList:[],
   trainCurrentPage:0,
   trainPageSize:5,
-  trainLessonSearchType:''
+  trainLessonSearchType:'',
+  queryLessonId:'',
+  collectStatus:false
   //typePageSize, typeCurrentPage, typeCurrentSearchType
 }
 
@@ -25,13 +27,12 @@ const mutations = {
   [types.RESET_TRAINPAGE](state){
     state.trainCurrentPage = 0
     state.trainPageSize = 5
-    state.lessonList = []
   },
-  [types.SET_SCROLL_LOADING](state, status){
-    state.scrollLoading = status
+  [types.SET_QUERY_LESSONID](state, videoId){
+    state.queryLessonId = videoId
   },
-  [types.SET_LESSON_LOADED](state, status){
-    state.lessonLoaded = status
+  [types.GETVIDEOLIST](state, res){
+    state.videoList = res
   }
 }
 
@@ -64,6 +65,34 @@ const actions = {
       })
   },
 
+  getVideoList({commit}, params){
+    //console.log(params.token + '--' + params.videoId)
+    commit(types.COM_LOADING, true)
+    api.getVideoList(params.token, params.videoId)
+      .then((res) => {
+        console.log(res)
+        setTimeout(function () {
+          commit(types.COM_LOADING, false)
+        },200)
+        if(res.data.status == 401){
+          $.alert("token失效,请重新登录", function () {
+            commit(types.LOGOUT)
+          });
+        }else if(res.data.status == 200){
+          commit(types.GETVIDEOLIST, res.data.data)
+        }else if(res.data.status == -2){
+          $.alert('已在别的地方登录', function () {
+            commit(types.LOGOUT)
+          })
+        }
+      }, err => {
+        reject(err)
+      })
+      .catch((error) => {
+        reject(error)
+      })
+  },
+
   nextPage({commit}){
     commit(types.NEXT_PAGE)
   },
@@ -73,19 +102,19 @@ const actions = {
   resetTrainPage({commit}){
     commit(types.RESET_TRAINPAGE)
   },
-  setScrollLoading({commit}, status){
-    commit(types.SET_SCROLL_LOADING, status)
-  },
-  setLessonLoaded({commit}, status){
-    commit(types.SET_LESSON_LOADED, status)
+  setQueryLessonId({commit}, videoId){
+    commit(types.SET_QUERY_LESSONID, videoId)
   }
 }
 
 const getters = {
   lessonTypeList:state => {return state.lessonTypeList},
+  videoList:state => {return state.videoList},
   trainCurrentPage:state => {return state.trainCurrentPage},
   trainPageSize:state => {return state.trainPageSize},
   trainLessonSearchType:state => {return state.trainLessonSearchType},
+  queryLessonId:state => {return state.queryLessonId},
+  collectStatus:state => {return state.collectStatus}
 }
 
 export default{
