@@ -1,7 +1,6 @@
 <template>
   <div class="page page-current" id="article-page">
     <v-header :title="title"></v-header>
-    <v-tabar></v-tabar>
     <div class="content">
       {{msg}}
     </div>

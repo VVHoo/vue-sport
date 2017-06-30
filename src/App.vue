@@ -25,24 +25,7 @@
       ...mapGetters([
         'isLogined',
         'isSubPage'
-      ]),
-      /*title(){
-        let pathLength = this.$route.path.split('/').length
-        //console.log(this.$route.path.split('/')[pathLength - 1])
-        if(pathLength > 2){
-          this.$store.dispatch('isSubPage', true)
-        }else {
-          this.$store.dispatch('isSubPage', false)
-        }
-        switch (this.$route.path.split('/')[pathLength - 1]){
-          case 'train':
-            return "训练"
-          case 'article':
-            return "发现"
-          case 'mine':
-            return "我的训练"
-        }
-      }*/
+      ])
     },
     watch:{
       '$route'(to, from){

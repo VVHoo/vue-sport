@@ -8,17 +8,13 @@ const state = {
   lessonList:[],
   trainCurrentPage:0,
   trainPageSize:5,
-  trainLessonSearchType:'',
-  scrollLoading: true
+  trainLessonSearchType:''
   //typePageSize, typeCurrentPage, typeCurrentSearchType
 }
 
 const mutations = {
   [types.GETLESSONTYPE](state, res){
     state.lessonTypeList = res
-  },
-  [types.GETLESSONLIST](state, res){
-    state.lessonList = state.lessonList.concat(res)
   },
   [types.NEXT_PAGE](state){
     state.trainCurrentPage++
@@ -29,11 +25,13 @@ const mutations = {
   [types.RESET_TRAINPAGE](state){
     state.trainCurrentPage = 0
     state.trainPageSize = 5
-    state.trainLessonSearchType = ''
     state.lessonList = []
   },
   [types.SET_SCROLL_LOADING](state, status){
     state.scrollLoading = status
+  },
+  [types.SET_LESSON_LOADED](state, status){
+    state.lessonLoaded = status
   }
 }
 
@@ -65,28 +63,7 @@ const actions = {
         reject(error)
       })
   },
-  getLessonList({commit}, params){
-    commit(types.COM_LOADING, true)
-    api.getLessonList(params.token, params.page)
-      .then((res) => {
-        //console.log(res)
-        setTimeout(() => {
-          commit(types.COM_LOADING, false)
-        }, 200)
-        if(res.data.status == 401){
-          $.alert("token失效,请重新登录", function () {
-            commit(types.LOGOUT)
-          });
-        }else if(res.data.status == 200){
-          commit(types.GETLESSONLIST, res.data.data)
-          commit(types.NEXT_PAGE)
-        }else if(res.data.status == -2){
-          $.alert('已在别的地方登录', function () {
-            commit(types.LOGOUT)
-          })
-        }
-      })
-  },
+
   nextPage({commit}){
     commit(types.NEXT_PAGE)
   },
@@ -98,16 +75,17 @@ const actions = {
   },
   setScrollLoading({commit}, status){
     commit(types.SET_SCROLL_LOADING, status)
+  },
+  setLessonLoaded({commit}, status){
+    commit(types.SET_LESSON_LOADED, status)
   }
 }
 
 const getters = {
   lessonTypeList:state => {return state.lessonTypeList},
-  lessonList:state => {return state.lessonList},
   trainCurrentPage:state => {return state.trainCurrentPage},
   trainPageSize:state => {return state.trainPageSize},
   trainLessonSearchType:state => {return state.trainLessonSearchType},
-  scrollLoading: state => {return state.scrollLoading}
 }
 
 export default{

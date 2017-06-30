@@ -1,18 +1,21 @@
 <template>
-  <div class="page page-current" id="train_list">
+  <div class="page page-current" id="train-list">
     <v-header :title="headTitle"></v-header>
     <div class="content">
-      <ul class="train_lession_list clearfix">
+      <ul class="train-lession-list clearfix">
         <router-link to="/train/trainList/trainLesson" tag="li"  v-for="(item, index) in lessonList" :key="item.id">
-          <div class="lesson_introduce">
+          <div class="lesson-introduce">
             <img v-lazy="item.coverPath">
           </div>
-          <div class="introduce_title">{{item.videoTitle}}</div>
+          <div class="introduce-title">{{item.videoTitle}}</div>
           <div class="pioneer">2人训练</div>
         </router-link>
-        <div v-if="lessonList.length == 0">暂时无内容</div>
+        <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading">
+          <span slot="no-more">
+            没有更多内容了~
+          </span>
+        </infinite-loading>
       </ul>
-      <scroll-loading></scroll-loading>
     </div>
   </div>
 </template>
@@ -20,12 +23,14 @@
 <script type="text/ecmascript-6">
   import header from '../components/header.vue'
   import tabar from '../components/tabar.vue'
-  import scrollLoading from '../components/scrollLoading.vue'
+  import InfiniteLoading from 'vue-infinite-loading'
   import { mapGetters } from 'vuex'
+  import api from '../api/index'
   export default {
     data () {
       return {
-        headTitle:'合集'
+        headTitle:'合集',
+        lessonList:[]
       }
     },
     computed:{
@@ -33,25 +38,49 @@
         'token',
         'trainCurrentPage',
         'trainPageSize',
-        'trainLessonSearchType',
-        'lessonList'
+        'trainLessonSearchType'
       ])
     },
     components:{
       'v-header': header,
       'v-tabar': tabar,
-      'scroll-loading': scrollLoading
+      'infinite-loading':InfiniteLoading
     },
-    created(){
-      let page = {
-        searchType: this.trainLessonSearchType,
-        pageSize: this.trainPageSize,
-        currentPage: this.trainCurrentPage + 1
+    methods:{
+      onInfinite(){
+        //console.log('infinite')
+        let page = {
+          searchType: this.trainLessonSearchType,
+          pageSize: this.trainPageSize,
+          currentPage: this.trainCurrentPage + 1
+        }
+        this.$store.dispatch('setLoading', true)
+        api.getLessonList(this.token, page)
+          .then((res) => {
+            //console.log(res)
+            setTimeout(() => {
+              this.$store.dispatch('setLoading', false)
+            }, 200)
+            if(res.data.status == 401){
+              let alertThis = this.$store
+              $.alert("token失效,请重新登录", function () {
+                alertThis.dispatch('logout')
+              });
+            }else if(res.data.status == 200){
+              this.lessonList = this.lessonList.concat(res.data.data)
+              this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded');
+              this.$store.dispatch('nextPage')
+              if(res.data.data.length < 5){
+                this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
+              }
+            }else if(res.data.status == -2){
+              let alertThis = this.$store
+              $.alert('已在别的地方登录', function () {
+                alertThis.dispatch('logout')
+              })
+            }
+          })
       }
-      this.$store.dispatch('getLessonList', {
-        token: this.token,
-        page:page
-      })
     },
     destroyed(){
       this.$store.dispatch('resetTrainPage')

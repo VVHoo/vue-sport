@@ -1,9 +1,9 @@
-.train_lession_list{
+.train-lession-list{
   margin:0;
   padding:0;
   overflow: hidden;
 }
-.lesson_introduce img{
+.lesson-introduce img{
   position: absolute;
   width: 100%;
   left: 50%;
@@ -12,8 +12,8 @@
   -webkit-transform:translate(-50%, -50%);
   -moz-transform:translate(-50%, -50%);
 }
-#train_list header .title,
-#train_list header a,
+#train-list header .title,
+#train-list header a,
 #train_lesson header .title,
 #train_lesson header a{
   color: #ffffff;
@@ -26,7 +26,7 @@
   text-align: center;
   color: #999;
 }
-.train_lession_list > li{
+.train-lession-list > li{
   position: relative;
   width:100%;
   height:8rem;
@@ -50,7 +50,7 @@
   -webkit-justify-content: center;
   justify-content: center;
 }
-.lesson_introduce{
+.lesson-introduce{
   width: 100%;
   height: 0;
   padding-bottom: 45%;
@@ -71,12 +71,12 @@
   justify-content: center;
   background: rgba(0, 0, 0, 0.4);
 }
-.introduce_title{
+.introduce-title{
   top:1.5rem;
   font-size:0.87rem;
   font-weight:600;
 }
-.introduce_title, .pioneer{
+.introduce-title, .pioneer{
   left:0.75rem;
   color: #ffffff;
   position: absolute;
