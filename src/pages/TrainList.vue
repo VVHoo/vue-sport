@@ -8,7 +8,7 @@
             <img v-lazy="item.coverPath">
           </div>
           <div class="introduce-title">{{item.videoTitle}}</div>
-          <div class="pioneer">2人训练</div>
+          <div class="pioneer">{{item.videoTag}}</div>
         </router-link>
         <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading" :distance="0">
           <span slot="no-more">

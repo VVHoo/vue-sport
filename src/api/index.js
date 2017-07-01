@@ -34,5 +34,8 @@ export default{
   },
   getCollectStatus(token, videoId){
     return instance.post(BASE_URL + 'videoCollection/' + videoId + '/isCollection/token/' + token)
+  },
+  collectLesson(token, videoId){
+    return instance.post(BASE_URL + 'videoCollection/' + videoId + '/addCollection/token/' + token)
   }
 }

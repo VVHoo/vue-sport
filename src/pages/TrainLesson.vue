@@ -5,17 +5,19 @@
       <div class="lesson-banner" v-if="videoList.length">
         <img v-lazy="videoList[0].coverImg">
         <div class="lesson-title">{{videoList[0].subVideoTitle}}</div>
-        <div class="pioneer">2人训练</div>
-        <button class="button add-button">加入训练</button>
+        <!--<div class="pioneer">{{videoList[0].videoTag}}</div>-->
+        <button class="button add-button" v-show="!collectStatus" @click="collectLesson">加入训练</button>
+        <button class="button add-button disabled" disabled="disabled" v-show="collectStatus">已收藏</button>
       </div>
       <div class="list-block">
         <ul class="list-container">
-          <li v-for="(item, index) in videoList" class="item-content">
+          <li v-for="(item, index) in videoList" class="item-content" @click="openVideoPage(item.subVideoId)">
             <div class="item-title">{{item.subVideoTitle}}</div>
           </li>
         </ul>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -32,7 +34,8 @@
       ...mapGetters([
         'videoList',
         'token',
-        'queryLessonId'
+        'queryLessonId',
+        'collectStatus'
       ])
     },
     created(){
@@ -40,8 +43,23 @@
         token:this.token,
         videoId:this.queryLessonId
       }
-      //this.$store.dispatch('getCollectStatus', params).then(() => {this.$store.dispatch('getVideoList', params)})
-      this.$store.dispatch('getVideoList', params)
+      this.$store.dispatch('getCollectStatus', params)
+        .then(() => {
+          this.$store.dispatch('getVideoList', params)
+        })
+    },
+    methods:{
+      collectLesson(){
+        let params = {
+          token:this.token,
+          videoId:this.queryLessonId
+        }
+        this.$store.dispatch('collectLesson', params)
+      },
+      openVideoPage(subVideoId){
+        $.popup('.video-container')
+        this.$store.dispatch('getCurrentVideo', subVideoId)
+      }
     },
     components:{
       'v-header': header
