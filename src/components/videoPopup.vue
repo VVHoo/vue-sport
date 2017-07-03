@@ -1,12 +1,13 @@
 <template>
-  <div class="popup video-container" v-show="videoContent">
+  <div class="popup video-container">
     <a class="icon pull-left iconfont icon-jiantou-copy-copy pull-down" @click="closePopup"></a>
     <div class="content-block video-box">
       <div class="video-title">{{videoContent.subVideoTitle}}</div>
       <div class="video">
 
       </div>
-      <div class="lesson-text">
+      <div class="lesson-text" v-html="videoContent.videoContent">
+        {{videoContent.videoContent}}
       </div>
     </div>
   </div>
@@ -22,7 +23,8 @@
     },
     methods:{
       closePopup(){
-        $.closeModal()
+        //$.closeModal('video-container')
+        this.$store.dispatch('setVideoPopup', false)
       }
     }
   }

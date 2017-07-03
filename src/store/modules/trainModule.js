@@ -11,7 +11,8 @@ const state = {
   trainLessonSearchType:'',
   queryLessonId:'',
   collectStatus:false,
-  videoContent:[]
+  videoContent:[],
+  videoPopup:false
 }
 
 const mutations = {
@@ -43,6 +44,9 @@ const mutations = {
         state.videoContent = state.videoList[index]
       }
     }
+  },
+  [types.SETVIDEOPOPUP](state, status){
+    state.videoPopup = status
   }
 }
 
@@ -154,6 +158,9 @@ const actions = {
   },
   getCurrentVideo({commit}, subVideoId){
     commit(types.GETVIDEOCONTENT, subVideoId)
+  },
+  setVideoPopup({commit}, status){
+    commit(types.SETVIDEOPOPUP, status)
   }
 }
 
@@ -165,7 +172,8 @@ const getters = {
   trainLessonSearchType:state => {return state.trainLessonSearchType},
   queryLessonId:state => {return state.queryLessonId},
   collectStatus:state => {return state.collectStatus},
-  videoContent: state => {return state.videoContent}
+  videoContent: state => {return state.videoContent},
+  videoPopup:state => {return state.videoPopup}
 }
 
 export default{

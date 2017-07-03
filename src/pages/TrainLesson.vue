@@ -6,8 +6,8 @@
         <img v-lazy="videoList[0].coverImg">
         <div class="lesson-title">{{videoList[0].subVideoTitle}}</div>
         <!--<div class="pioneer">{{videoList[0].videoTag}}</div>-->
-        <button class="button add-button" v-show="!collectStatus" @click="collectLesson">加入训练</button>
-        <button class="button add-button disabled" disabled="disabled" v-show="collectStatus">已收藏</button>
+        <button class="button add-button" v-if="!collectStatus" @click="collectLesson">加入训练</button>
+        <button class="button add-button disabled" disabled="disabled" v-if="collectStatus">已收藏</button>
       </div>
       <div class="list-block">
         <ul class="list-container">
@@ -57,8 +57,12 @@
         this.$store.dispatch('collectLesson', params)
       },
       openVideoPage(subVideoId){
-        $.popup('.video-container')
-        this.$store.dispatch('getCurrentVideo', subVideoId)
+        //console.log('open')
+        //$.popup('.video-container')
+        this.$store.dispatch('setVideoPopup', true)
+          .then(() => {
+            this.$store.dispatch('getCurrentVideo', subVideoId)
+          })
       }
     },
     components:{

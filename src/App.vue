@@ -8,6 +8,7 @@
       <user-panel v-if="isLogined"></user-panel>
       <v-loading v-if="isLogined"></v-loading>
     </div>
+    <video-popup v-if="isLogined"></video-popup>
   </div>
 </template>
 
@@ -15,6 +16,7 @@
   import { mapGetters } from 'vuex'
   import userPanel from './components/userPanel.vue'
   import loading from './components/loading.vue'
+  import videoPopup from './components/videoPopup.vue'
   export default {
     data(){
       return {
@@ -24,7 +26,8 @@
     computed:{
       ...mapGetters([
         'isLogined',
-        'isSubPage'
+        'isSubPage',
+        'videoPopup'
       ])
     },
     watch:{
@@ -39,7 +42,7 @@
         let fromDepth = from.path.split('/').length
         this.transitionName = toDepth < fromDepth ? 'slideRight' : 'slideLeft'
         if(to.path === '/train' && from.path === '/' || to.path === '/article' && from.path === '/' || to.path === '/mine' && from.path === '/'
-          || toDepth <=2 && fromDepth <=2){
+          || toDepth <= 2 && fromDepth <= 2){
           this.transitionName = ' '
         }
       },
@@ -47,11 +50,19 @@
         if(!this.isLogined){
           this.$router.replace('/account')
         }
+      },
+      videoPopup:function () {
+        if(this.videoPopup){
+          $.popup('.video-container')
+        }else {
+          $.closeModal()
+        }
       }
     },
     components:{
       'user-panel':userPanel,
-      'v-loading':loading
+      'v-loading':loading,
+      'video-popup':videoPopup
     }
   }
 </script>
