@@ -3,9 +3,9 @@
     <a class="icon pull-left iconfont icon-jiantou-copy-copy pull-down" @click="closePopup"></a>
     <div class="content-block video-box">
       <div class="video-title">{{videoContent.subVideoTitle}}</div>
-      <div class="video">
 
-      </div>
+        <!--<video-player class="video-js vjs-default-skin vjs-fluid vjs-big-play-centered" ref="videoPlayer" :options="playerOptions"></video-player>-->
+        <video-player v-if="videoPopup" :videoPath="videoContent.videoPath"></video-player>
       <div class="lesson-text" v-html="videoContent.videoContent">
         {{videoContent.videoContent}}
       </div>
@@ -14,11 +14,13 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import videoPlayer from '../components/videoPlayer.vue'
   import { mapGetters } from 'vuex'
   export default {
     computed:{
       ...mapGetters([
-        'videoContent'
+        'videoContent',
+        'videoPopup'
       ])
     },
     methods:{
@@ -26,6 +28,9 @@
         //$.closeModal('video-container')
         this.$store.dispatch('setVideoPopup', false)
       }
+    },
+    components:{
+      'video-player':videoPlayer
     }
   }
 </script>

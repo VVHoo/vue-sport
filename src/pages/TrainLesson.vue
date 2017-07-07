@@ -59,9 +59,9 @@
       openVideoPage(subVideoId){
         //console.log('open')
         //$.popup('.video-container')
-        this.$store.dispatch('setVideoPopup', true)
+        this.$store.dispatch('getCurrentVideo', subVideoId)
           .then(() => {
-            this.$store.dispatch('getCurrentVideo', subVideoId)
+            this.$store.dispatch('setVideoPopup', true)
           })
       }
     },
