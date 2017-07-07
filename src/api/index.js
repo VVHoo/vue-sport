@@ -37,5 +37,10 @@ export default{
   },
   collectLesson(token, videoId){
     return instance.post(BASE_URL + 'videoCollection/' + videoId + '/addCollection/token/' + token)
+  },
+
+  /*article*/
+  getNewestList(token){
+    return instance.post(BASE_URL + 'article/getNewestArticle/token/' + token)
   }
 }
