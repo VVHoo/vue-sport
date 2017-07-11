@@ -3,8 +3,8 @@
     <v-header :title="headTitle"></v-header>
     <div class="content">
       <ul class="train-lession-list clearfix">
-        <router-link to="/train/trainList/trainLesson" tag="li"  v-for="(item, index) in lessonList" :key="item.id" @click="setQueryLessonId">
-          <div class="lesson-introduce" @click="setQueryLessonId(item.videoId)">
+        <router-link :to="{ path:'/train/trainList/' + item.videoId}" tag="li"  v-for="(item, index) in lessonList" :key="item.id">
+          <div class="lesson-introduce">
             <img v-lazy="item.coverPath">
           </div>
           <div class="introduce-title">{{item.videoTitle}}</div>
@@ -22,7 +22,6 @@
 
 <script type="text/ecmascript-6">
   import header from '../components/header.vue'
-  import tabar from '../components/tabar.vue'
   import InfiniteLoading from 'vue-infinite-loading'
   import { mapGetters } from 'vuex'
   import api from '../api/index'
@@ -43,7 +42,6 @@
     },
     components:{
       'v-header': header,
-      'v-tabar': tabar,
       'infinite-loading':InfiniteLoading
     },
     methods:{
@@ -79,9 +77,6 @@
               })
             }
           })
-      },
-      setQueryLessonId(videoId){
-        this.$store.dispatch('setQueryLessonId', videoId)
       }
     },
     destroyed(){

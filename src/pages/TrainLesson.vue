@@ -34,14 +34,13 @@
       ...mapGetters([
         'videoList',
         'token',
-        'queryLessonId',
         'collectStatus'
       ])
     },
     created(){
       let params = {
         token:this.token,
-        videoId:this.queryLessonId
+        videoId:this.$route.params.lessonId
       }
       this.$store.dispatch('getCollectStatus', params)
         .then(() => {
@@ -52,7 +51,7 @@
       collectLesson(){
         let params = {
           token:this.token,
-          videoId:this.queryLessonId
+          videoId:this.$route.params.lessonId
         }
         this.$store.dispatch('collectLesson', params)
       },

@@ -9,7 +9,6 @@ const state = {
   trainCurrentPage:0,
   trainPageSize:5,
   trainLessonSearchType:'',
-  queryLessonId:'',
   collectStatus:false,
   videoContent:[],
   videoPopup:false
@@ -28,9 +27,6 @@ const mutations = {
   [types.RESET_TRAINPAGE](state){
     state.trainCurrentPage = 0
     state.trainPageSize = 5
-  },
-  [types.SET_QUERY_LESSONID](state, videoId){
-    state.queryLessonId = videoId
   },
   [types.GETVIDEOLIST](state, res){
     state.videoList = res
@@ -116,9 +112,6 @@ const actions = {
   resetTrainPage({commit}){
     commit(types.RESET_TRAINPAGE)
   },
-  setQueryLessonId({commit}, videoId){
-    commit(types.SET_QUERY_LESSONID, videoId)
-  },
   getCollectStatus({commit}, params){
     api.getCollectStatus(params.token, params.videoId)
       .then((res) => {
@@ -170,7 +163,6 @@ const getters = {
   trainCurrentPage:state => {return state.trainCurrentPage},
   trainPageSize:state => {return state.trainPageSize},
   trainLessonSearchType:state => {return state.trainLessonSearchType},
-  queryLessonId:state => {return state.queryLessonId},
   collectStatus:state => {return state.collectStatus},
   videoContent: state => {return state.videoContent},
   videoPopup:state => {return state.videoPopup}

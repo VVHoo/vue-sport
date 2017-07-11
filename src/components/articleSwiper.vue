@@ -1,35 +1,49 @@
 <template>
-  <div class="swiper-container" id="article-banner">
-    <v-swiper
-              direction="horizontal"
-              :mousewheel-control="true"
-              :pagination-visible="true"
-              :loop="true">
-      <div v-for="(item, index) in swiperList" class="swiper-slide">
-        <img v-lazy="item.imgPath">
-      </div>
-    </v-swiper>
-  </div>
+  <swiper :options="swiperOption">
+    <swiper-slide v-for="(item, index) in swiperList" :key="item.id"><img :src="item.imgPath"></swiper-slide>
+    <div class="swiper-pagination"  slot="pagination"></div>
+  </swiper>
 </template>
 
 <script>
-  import swiper from 'vue-swiper'
+  import { swiper, swiperSlide }  from 'vue-awesome-swiper'
   export default {
     props:{
       swiperList: Array
     },
+    data() {
+      return {
+        swiperOption: {
+          initialSlide: 0,
+          autoplay: 5000,
+          direction : 'horizontal',
+          setWrapperSize:true,
+          loop:true,
+          autoplayDisableOnInteraction:false,
+          pagination : '.swiper-pagination'
+        }
+      }
+    },
     components:{
-      'v-swiper': swiper
+      swiper,
+      swiperSlide
     }
   }
 </script>
 
-<style scoped>
+<style>
   .swiper-container{
-    max-height:10rem;
-    overflow: hidden;
+    max-height:9rem;
+    padding-bottom:0;
   }
   .swiper-container img{
-    max-height: 10rem;
+    width: 100%;
+  }
+  .swiper-pagination-bullet{
+    width:6px;
+    height:6px;
+  }
+  .swiper-pagination-bullet-active{
+    background: #ffffff;
   }
 </style>

@@ -42,5 +42,11 @@ export default{
   /*article*/
   getNewestList(token){
     return instance.post(BASE_URL + 'article/getNewestArticle/token/' + token)
+  },
+  getArticleTypeList(token){
+    return instance.post(BASE_URL + 'article/getClassifyArticle/token/' + token)
+  },
+  getArticleContent(token, articleId){
+    return instance.post(BASE_URL + 'article/' + articleId + '/detail/token/' + token)
   }
 }

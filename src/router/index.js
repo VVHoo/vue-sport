@@ -12,6 +12,8 @@ const Article = r => require.ensure([], () => r(require('../pages/Article')), 'A
 const Mine = r => require.ensure([], () => r(require('../pages/Mine')), 'Mine')
 const TrainList = r => require.ensure([], () => r(require('../pages/TrainList')), 'TrainList')
 const TrainLesson = r => require.ensure([], () => r(require('../pages/TrainLesson')), 'TrainLesson')
+const ArticleList = r => require.ensure([], () => r(require('../pages/ArticleList')), 'ArticleList')
+const ArticleContent = r => require.ensure([], () => r(require('../pages/ArticleContent')), 'ArticleContent')
 /*const TrainList = r => require.ensure([], () => r(require('../pages/TrainList')), 'TrainList')
  const TrainLesson = r => require.ensure([], () => r(require('../pages/TrainLesson')), 'TrainLesson')
  const Article = r => require.ensure([], () => r(require('../pages/Article')), 'Article')
@@ -69,8 +71,18 @@ const routes = new Router({
       component:TrainList
     },
     {
-      path:'/train/trainList/trainLesson',
+      path:'/train/trainList/:lessonId',
       component:TrainLesson
+    },
+    {
+      path:'/article/articleList',
+      name:'articleList',
+      component:ArticleList
+    },
+    {
+      path:'/article/:articleId',
+      name:'articleContent',
+      component:ArticleContent
     }
     /*{
      path:'/train',
