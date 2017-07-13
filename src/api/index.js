@@ -48,5 +48,14 @@ export default{
   },
   getArticleContent(token, articleId){
     return instance.post(BASE_URL + 'article/' + articleId + '/detail/token/' + token)
+  },
+  getTotalComments(token, articleId){
+    return instance.post(BASE_URL + 'article/' + articleId + '/getTotalComment/token/' + token)
+  },
+  getArticleComments(params, page){
+    return instance.post(BASE_URL + 'article/' + params.articleId + '/getMessages/token/' + params.token, page)
+  },
+  getArticleList(token, page){
+    return instance.post(BASE_URL + 'article/getList/token/' + token, page)
   }
 }

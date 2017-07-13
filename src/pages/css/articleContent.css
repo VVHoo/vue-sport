@@ -1,0 +1,39 @@
+.card-content img {
+  width: 100%;
+}
+.comment-window{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.bar .button{
+  top:0;
+}
+.comment-input{
+  padding:0 0.3rem;
+  font-size:0.5rem;
+  background: #ffffff;
+  border-radius: 0.25rem;
+  border:1px solid #ccc;
+}
+.comment-input input{
+  border:none;
+  vertical-align: middle;
+}
+.comment-input label{
+  padding:0 !important;
+  margin-right:0.2rem;
+  font-size:0.7rem !important;
+}

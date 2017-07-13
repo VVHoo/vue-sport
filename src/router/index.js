@@ -75,13 +75,17 @@ const routes = new Router({
       component:TrainLesson
     },
     {
-      path:'/article/articleList',
+      path:'/article/articleList/:articleType',
       name:'articleList',
       component:ArticleList
     },
     {
       path:'/article/:articleId',
       name:'articleContent',
+      component:ArticleContent
+    },
+    {
+      path:'/article/articleList/:articleType/articleContent/:articleId',
       component:ArticleContent
     }
     /*{

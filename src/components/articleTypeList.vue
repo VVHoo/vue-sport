@@ -2,14 +2,14 @@
   <div class="article-layout">
     <ul>
       <li class="article-classify" v-for="(item, index) in articleTypeList">
-        <router-link to="/article/articleList" class="classify-title">
+        <router-link :to="{ path:'/article/articleList/' + item[0].category}" class="classify-title">
           <div class="item-inner">
             <div class="item-title">{{item[0].category}}</div>
           </div>
         </router-link>
         <div class="list-block media-list">
           <ul>
-            <router-link :to="{ path:'/article/' + data.articleId}" class="item-content" v-for="data in item" tag="li" :key="data.id">
+            <router-link :to="{ path:'/article/' + data.articleId }" class="item-content" v-for="data in item" tag="li" :key="data.id">
               <div class="item-media"><img :src="data.imgPath" width="55"></div>
               <div class="item-inner">
                 <div class="item-title-row">
