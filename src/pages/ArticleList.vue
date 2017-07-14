@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="list-layout">
-        <router-link :to="{ path:'/article/articleList/' + item.articleId}" class="article-box" v-for="(item, index) in articleList" tag="div" :key="item.id">
+        <router-link :to="{ path:'/article/articleList/' + thisType + '/' + item.articleId}" class="article-box" v-for="(item, index) in articleList" tag="div" :key="item.id">
           <div class="article-header"><img v-lazy="item.imgPath"></div>
           <div class="article-content"><h3>运动后膝痛别光静养,这份自救指南请私藏</h3><p>针对跑、跳及球类运动者的..</p></div>
         </router-link>
@@ -31,7 +31,8 @@
     data () {
       return {
         headTitle:'合集',
-        articleList:[]
+        articleList:[],
+        thisType: this.$route.params.articleType
       }
     },
     computed:{

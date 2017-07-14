@@ -7,6 +7,7 @@ import common from './modules/common'
 import accountModule from './modules/accountModule'
 import trainModule from './modules/trainModule'
 import articleModule from './modules/articleModule'
+import mineModule from './modules/mineModule'
 
 Vue.use(Vuex)
 export default new Vuex.Store({
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     common,
     accountModule,
     trainModule,
-    articleModule
+    articleModule,
+    mineModule
   }
 })

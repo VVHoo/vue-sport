@@ -57,5 +57,16 @@ export default{
   },
   getArticleList(token, page){
     return instance.post(BASE_URL + 'article/getList/token/' + token, page)
+  },
+
+  /*mine*/
+  getCollection(token){
+    return instance.post(BASE_URL + 'videoCollection/getCollectionList/token/' + token)
+  },
+  getSignNum(token){
+    return instance.post(BASE_URL + 'Auth/getSign/token/' + token)
+  },
+  sign(token){
+    return instance.post(BASE_URL + 'Auth/sign/token/' + token)
   }
 }

@@ -3,9 +3,7 @@
     <a class="icon pull-left iconfont icon-jiantou-copy-copy pull-down" @click="closePopup"></a>
     <div class="content-block video-box">
       <div class="video-title">{{videoContent.subVideoTitle}}</div>
-
-        <!--<video-player class="video-js vjs-default-skin vjs-fluid vjs-big-play-centered" ref="videoPlayer" :options="playerOptions"></video-player>-->
-        <video-player v-if="videoPopup" :videoPath="videoContent.videoPath"></video-player>
+      <video-player v-if="videoPopup" :videoPath="videoContent.videoPath"></video-player>
       <div class="lesson-text" v-html="videoContent.videoContent">
         {{videoContent.videoContent}}
       </div>
