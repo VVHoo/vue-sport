@@ -33,8 +33,8 @@
     computed:{
       ...mapGetters([
         'token',
-        'commentsPageSize',
-        'currentCommentsPage',
+        'pageSize',
+        'currentPage',
         'totalComments'
       ])
     },
@@ -47,8 +47,8 @@
     methods: {
       onInfinite(){
         let page = {
-          pageSize: this.commentsPageSize,
-          currentPage: this.currentCommentsPage + 1,
+          pageSize: this.pageSize,
+          currentPage: this.currentPage + 1
         }
         this.$store.dispatch('setLoading', true)
         api.getArticleComments({token: this.token, articleId: this.$route.params.articleId}, page)
@@ -65,7 +65,7 @@
             }else if(res.data.status == 200){
               this.articleComments = this.articleComments.concat(res.data.data)
               this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded');
-              this.$store.dispatch('nextCommentsPage')
+              this.$store.dispatch('nextPage')
               if(res.data.data.length < 5){
                 this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
               }
@@ -81,7 +81,7 @@
       'infinite-loading': InfiniteLoading
     },
     destroyed(){
-      this.$store.dispatch('resetCommentsPage')
+      this.$store.dispatch('resetPage')
     }
   }
 </script>

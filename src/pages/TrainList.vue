@@ -35,8 +35,8 @@
     computed:{
       ...mapGetters([
         'token',
-        'trainCurrentPage',
-        'trainPageSize',
+        'currentPage',
+        'pageSize',
         'trainLessonSearchType'
       ])
     },
@@ -49,13 +49,13 @@
         //console.log('infinite')
         let page = {
           searchType: this.trainLessonSearchType,
-          pageSize: this.trainPageSize,
-          currentPage: this.trainCurrentPage + 1
+          pageSize: this.pageSize,
+          currentPage: this.currentPage + 1
         }
         this.$store.dispatch('setLoading', true)
         api.getLessonList(this.token, page)
           .then((res) => {
-            //console.log(res)
+            console.log(res)
             let alertThis = this.$store
             setTimeout(() => {
               this.$store.dispatch('setLoading', false)
@@ -80,7 +80,7 @@
       }
     },
     destroyed(){
-      this.$store.dispatch('resetTrainPage')
+      this.$store.dispatch('resetPage')
     }
   }
 </script>

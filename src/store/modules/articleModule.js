@@ -5,12 +5,7 @@ const state = {
   swiperList:[],
   articleTypeList: [],
   articleContent:[],
-  commentsPageSize:5,
-  currentCommentsPage: 0,
-  totalComments:0,
-
-  articleListPageSize: 5,
-  articleListCurrentPage: 0
+  totalComments:0
 }
 const mutations = {
   [types.GETSWIPERLIST](state, res){
@@ -123,18 +118,6 @@ const actions = {
           })
         }
       })
-  },
-  nextCommentsPage({commit}){
-    commit(types.NEXTCOMMENTSPAGE)
-  },
-  resetCommentsPage({commit}){
-    commit(types.RESETCOMMENTSPAGE)
-  },
-  nextArticleListPage({commit}){
-    commit(types.NEXTARTICLELISTPAGE)
-  },
-  resetArticlePage({commit}){
-    commit(types.RESETARTICLEPAGE)
   }
 }
 
@@ -142,11 +125,7 @@ const getters = {
   swiperList:state => {return state.swiperList},
   articleTypeList: state => {return state.articleTypeList},
   articleContent: state => {return state.articleContent},
-  commentsPageSize: state => {return state.commentsPageSize},
-  currentCommentsPage: state => {return state.currentCommentsPage},
   totalComments: state => {return state.totalComments},
-  articleListPageSize: state => {return state.articleListPageSize},
-  articleListCurrentPage: state => {return state.articleListCurrentPage}
 }
 
 export default{

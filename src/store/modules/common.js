@@ -8,7 +8,9 @@ import * as types from '../mutation-types'
 const state = {
   loading: false,
   token:localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).token : ' ',
-  isSubPage: localStorage.getItem('isSubPage') ? localStorage.getItem('isSubPage') : false
+  isSubPage: localStorage.getItem('isSubPage') ? localStorage.getItem('isSubPage') : false,
+  pageSize: 5,
+  currentPage:0
 }
 
 const mutations = {
@@ -21,13 +23,22 @@ const mutations = {
   [types.IS_SUBPAGE](state, status){
     localStorage.setItem('isSubPage', status)
     state.isSubPage = status
+  },
+  [types.NEXT_PAGE](state){
+    state.currentPage++
+  },
+  [types.RESET_PAGE](state){
+    state.currentPage = 0
+    state.pageSize = 5
   }
 }
 
 const getters = {
   loading: state => state.loading,
   token: state => state.token,
-  isSubPage: state => state.isSubPage
+  isSubPage: state => state.isSubPage,
+  currentPage:state => {return state.currentPage},
+  pageSize:state => {return state.pageSize}
 }
 
 const actions = {
@@ -39,6 +50,12 @@ const actions = {
   },
   isSubPage({commit}, status){
     commit(types.IS_SUBPAGE, status)
+  },
+  nextPage({commit}){
+    commit(types.NEXT_PAGE)
+  },
+  resetPage({commit}){
+    commit(types.RESET_PAGE)
   }
 }
 export default{

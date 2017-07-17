@@ -1,6 +1,8 @@
 <template>
   <swiper :options="swiperOption">
-    <swiper-slide v-for="(item, index) in swiperList" :key="item.id"><img :src="item.imgPath"></swiper-slide>
+    <swiper-slide v-for="(item, index) in swiperList" :key="item.id">
+      <router-link :to="{ path:'/article/' + item.articleId }" :src="item.imgPath" tag="img"></router-link>
+    </swiper-slide>
     <div class="swiper-pagination"  slot="pagination"></div>
   </swiper>
 </template>

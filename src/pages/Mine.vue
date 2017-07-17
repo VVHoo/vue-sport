@@ -30,12 +30,10 @@
       ])
     },
     created(){
-      if(this.collectionList.length == 0){
-        this.$store.dispatch('getCollectionList', this.token)
-          .then(() => {
-            this.$store.dispatch('getSignInfo', this.token)
-          })
-      }
+      this.$store.dispatch('getCollectionList', this.token)
+        .then(() => {
+          this.$store.dispatch('getSignInfo', this.token)
+        })
     },
     components:{
       'v-tabar': tabar,

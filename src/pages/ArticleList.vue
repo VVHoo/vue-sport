@@ -38,8 +38,8 @@
     computed:{
       ...mapGetters([
         'token',
-        'articleListCurrentPage',
-        'articleListPageSize'
+        'currentPage',
+        'pageSize'
       ])
     },
     components:{
@@ -51,8 +51,8 @@
         //console.log('infinite')
         let page = {
           searchType: this.$route.params.articleType,
-          pageSize: this.articleListPageSize,
-          currentPage: this.articleListCurrentPage + 1
+          pageSize: this.pageSize,
+          currentPage: this.currentPage + 1
         }
         this.$store.dispatch('setLoading', true)
         api.getArticleList(this.token, page)
@@ -70,7 +70,7 @@
               if(res.data.data.length){
                 this.articleList = this.articleList.concat(res.data.data)
                 this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded');
-                this.$store.dispatch('nextArticleListPage')
+                this.$store.dispatch('nextPage')
                 if(res.data.data.length < 5){
                   this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete');
                 }
@@ -86,7 +86,7 @@
       }
     },
     destroyed(){
-      this.$store.dispatch('resetArticlePage')
+      this.$store.dispatch('resetPage')
     }
   }
 </script>
