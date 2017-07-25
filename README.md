@@ -1,7 +1,12 @@
 # vue-sport
 
-> A Vue.js project
+> 这是一个Vue.js个人项目，Vue + Vuex + Vue-Router + Axios实现的WebApp，用来反馈最近Vue的学习成果
 
+### 技术栈
+- Vue全家桶(Vue + Vuex + Vue-Router + Axios)
+- SUI-Mobile
+- Webpack
+- ES6
 ## Build Setup
 
 ``` bash
