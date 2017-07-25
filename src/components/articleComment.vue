@@ -25,17 +25,18 @@
   import api from '../api/index'
   import { mapGetters } from 'vuex'
   export default {
-    data () {
+   /* data () {
       return {
         articleComments:[]
       }
-    },
+    },*/
     computed:{
       ...mapGetters([
         'token',
         'pageSize',
         'currentPage',
-        'totalComments'
+        'totalComments',
+        'articleComments'
       ])
     },
     created(){
@@ -63,7 +64,8 @@
                 alertThis.dispatch('logout')
               });
             }else if(res.data.status == 200){
-              this.articleComments = this.articleComments.concat(res.data.data)
+              this.$store.dispatch('getComments', res.data.data)
+              //this.articleComments = this.articleComments.concat(res.data.data)
               this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded');
               this.$store.dispatch('nextPage')
               if(res.data.data.length < 5){
@@ -82,6 +84,7 @@
     },
     destroyed(){
       this.$store.dispatch('resetPage')
+      this.$store.dispatch('resetComments')
     }
   }
 </script>

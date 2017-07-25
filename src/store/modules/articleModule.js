@@ -5,7 +5,8 @@ const state = {
   swiperList:[],
   articleTypeList: [],
   articleContent:[],
-  totalComments:0
+  totalComments:0,
+  articleComments:[]
 }
 const mutations = {
   [types.GETSWIPERLIST](state, res){
@@ -36,6 +37,15 @@ const mutations = {
   [types.RESETARTICLEPAGE](state){
     state.articleListPageSize = 5
     state.articleListCurrentPage = 0
+  },
+  [types.GETCOMMENT](state, comments){
+    state.articleComments = state.articleComments.concat(comments)
+  },
+  [types.ADDCOMMENT](state, newComment){
+    state.articleComments.unshift(newComment)
+  },
+  [types.RESET_COMMENTS](state){
+    state.articleComments = []
   }
 }
 
@@ -118,6 +128,38 @@ const actions = {
           })
         }
       })
+  },
+  getComments({commit}, comments){
+    commit(types.GETCOMMENT, comments)
+  },
+  resetComments({commit}){
+    commit(types.RESET_COMMENTS)
+  },
+  sendComment({commit}, params){
+    commit(types.COM_LOADING, true)
+    api.sendComment(params.token, {
+      comment: params.comment,
+      articleId:params.articleId
+      })
+      .then((res) => {
+        //console.log(res)
+        commit(types.COM_LOADING, false)
+        if(res.data.status == 14){
+          $.toast('评论成功')
+          let newComment = {}
+          newComment.avatarUrl = params.avatarUrl
+          newComment.userName = params.userName
+          newComment.comment = params.comment
+          newComment.sendTime = '刚刚'
+          commit(types.ADDCOMMENT, newComment)
+        }else if(res.data.status == 15){
+          $.toast('评论失败')
+        }else if(res.data.status == -2){
+          $.alert('已在别的地方登录', function () {
+            commit(types.LOGOUT)
+          })
+        }
+      })
   }
 }
 
@@ -126,6 +168,7 @@ const getters = {
   articleTypeList: state => {return state.articleTypeList},
   articleContent: state => {return state.articleContent},
   totalComments: state => {return state.totalComments},
+  articleComments: state => {return state.articleComments}
 }
 
 export default{

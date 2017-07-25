@@ -2,8 +2,8 @@
   <div class="page page-current" id="article-content">
     <v-header :title="headTitle"></v-header>
     <nav class="bar bar-tab comment-window" v-if="articleContent">
-      <div class="comment-input"><label class="icon icon-edit"></label><input type="text" name="comment_input" placeholder="说点什么吧"/></div>
-      <a class="button button-dark send-comment">发送</a>
+      <div class="comment-input"><label class="icon icon-edit"></label><input type="text" name="comment_input" v-model="sendCommentInfo" placeholder="说点什么吧"/></div>
+      <a class="button button-dark send-comment" @click="sendComment">发送</a>
     </nav>
     <div class="content">
       <p v-if="!articleContent">暂时无内容~</p>
@@ -22,13 +22,15 @@
   export default {
     data () {
       return {
-        headTitle:'文章详情'
+        headTitle:'文章详情',
+        sendCommentInfo:''
       }
     },
     computed:{
       ...mapGetters([
         'token',
-        'articleContent'
+        'articleContent',
+        'user'
       ])
     },
     created(){
@@ -36,6 +38,17 @@
         token:this.token,
         articleId: this.$route.params.articleId
       })
+    },
+    methods:{
+      sendComment(){
+        this.$store.dispatch('sendComment', {
+          token:this.token,
+          comment:this.sendCommentInfo,
+          articleId: this.$route.params.articleId,
+          avatarUrl:this.user.avatarUrl,
+          userName: this.user.userName
+        })
+      }
     },
     components:{
       'v-header': header,

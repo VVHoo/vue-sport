@@ -58,6 +58,9 @@ export default{
   getArticleList(token, page){
     return instance.post(BASE_URL + 'article/getList/token/' + token, page)
   },
+  sendComment(token, params){
+    return instance.post(BASE_URL + 'article/addComment/token/' + token, params)
+  },
 
   /*mine*/
   getCollection(token){

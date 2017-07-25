@@ -1,5 +1,6 @@
 export default{
-  bind(el){
+  bind(el, binding){
+    console.log(binding)
     let touchStartTime = 0
     let touchEndTime = 0
     let lessonTimer = null
@@ -8,22 +9,17 @@ export default{
       triggerClick = true;
       touchStartTime = new Date().getTime();
       lessonTimer = setTimeout(function () {
+        console.log('longTap')
       }, 300)
-      console.log('touchstart')
     })
     el.addEventListener('touchmove', () => {
       clearTimeout(lessonTimer);
       lessonTimer = null;
-      console.log('touchmove')
     })
     el.addEventListener('touchend', () => {
-      console.log('touchend')
       touchEndTime = new Date().getTime();
       clearTimeout(lessonTimer);
       lessonTimer = null;
-      if(touchEndTime - touchStartTime < 300 && triggerClick){
-        console.log('longTap')
-      }
     })
   }
 }

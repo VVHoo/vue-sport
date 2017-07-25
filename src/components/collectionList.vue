@@ -1,6 +1,6 @@
 <template>
   <div class="list-block mytrain_lesson">
-    <router-link :to="{path:'/mine/' + item.videoId}" class="card" v-for="(item, index) in collectionList" tag="div" :key="item.id">
+    <router-link :to="{path:'/mine/' + item.videoId}" class="card" v-for="(item, index) in collectionList" tag="div" v-longTap="cancelCollect(item.videoId)" :key="item.id">
       <div class="card-content">
         <img v-lazy="item.coverPath">
       </div>
@@ -13,6 +13,11 @@
   export default {
     props:{
       collectionList: Array
+    },
+    methods:{
+      cancelCollect(videoId){
+        console.log()
+      }
     }
   }
 </script>
