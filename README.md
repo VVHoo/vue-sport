@@ -1,10 +1,12 @@
 # vue-sport
 
-> 这是一个Vue.js个人项目，Vue + Vuex + Vue-Router + Axios实现的WebApp，用来反馈最近Vue的学习成果
+> 这是一个Vue改写之前的项目[SportApp](https://github.com/VVHoo/SportApp)，用Vue全家桶实现的WebApp，用来巩固最近Vue的学习成果
+，后台API来自另一个项目[SportsApp](https://github.com/VVHoo/SportsApp)
 
 ### 技术栈
 - Vue全家桶(Vue + Vuex + Vue-Router + Axios)
 - SUI-Mobile
+- Zepto
 - Webpack
 - ES6
 ## Build Setup
@@ -31,5 +33,8 @@ npm run e2e
 # run all tests
 npm test
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## TODO
+- [ ] 长按事件
+- [ ] 修改密码
+- [ ] 修改个人信息
+- [ ] 更改头像
