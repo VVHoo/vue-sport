@@ -9,6 +9,11 @@
 - Zepto
 - Webpack
 - ES6
+
+### 运行截图
+![训练页](https://raw.githubusercontent.com/VVHoo/vue-sport/master/screenshots/trainPage.gif)
+![文章页](https://raw.githubusercontent.com/VVHoo/vue-sport/master/screenshots/articlePage.gif)
+![我的训练页](https://raw.githubusercontent.com/VVHoo/vue-sport/master/screenshots/minePage.gif)
 ## Build Setup
 
 ``` bash
